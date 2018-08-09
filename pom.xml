@@ -30,6 +30,7 @@
         <dubbo.version>2.5.3</dubbo.version>
         <com.yms.ltd>1.0.0</com.yms.ltd>
         <bestpay.kafka.version>0.2.8</bestpay.kafka.version>
+        <junit.version>4.10</junit.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -93,7 +94,6 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${org.springframework.version}</version>
-                <scope>test</scope>
             </dependency>
             <!-- 数据库连接池配置 -->
             <dependency>
@@ -157,6 +157,11 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+            <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
             <!-- log end -->
             <!-- alibaba dubbo -->
             <dependency>
@@ -242,12 +247,20 @@
             <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 </project>

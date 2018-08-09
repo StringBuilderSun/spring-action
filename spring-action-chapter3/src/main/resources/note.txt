@@ -1,0 +1,14 @@
+Spring in action
+第三章节  高级装配
+1、Profile 指定环境装配
+  1.1 在需要自动装配的bean上使用@Profile注解 就可以在指定环境中只装配指定环境的bean
+  1.2 Profile可以注解在配置类上  可以注解在配置方法上 XML 中配置在 beans 里面
+  1.3 激活profile
+      profile激活状态需要依赖 spring.profiles.active>spring.profiles.default  如果两者都没有 则会创建没有设置在             profile的bean
+      多种方式这是这两个属性:（只列举常用）
+      ☆作为DispatcherServlet的初始参数
+      ☆作为web应用的上下文参数
+      ☆在集成测试类上使用@ActiveProfile注解指定
+      ☆作为环境变量 、作为jvm参数  不建议使用
+ 2、条件化的bean
+    根据特殊指定的条件去决定是否创建bean 通过@Conditional注解去指定条件，参数为实现了Condition接口的类，主要判断逻辑在    macthes方法
