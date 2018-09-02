@@ -12,7 +12,6 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  */
 public class MagicExitCondition implements Condition {
 
-
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
         //检查环境中是否含有JAVA_HOME环境变量
         Environment environment= conditionContext.getEnvironment();

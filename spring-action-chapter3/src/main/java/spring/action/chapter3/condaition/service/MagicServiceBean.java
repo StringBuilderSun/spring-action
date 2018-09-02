@@ -2,6 +2,7 @@ package spring.action.chapter3.condaition.service;
 
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
+import spring.action.chapter3.condaition.judgment.AnnotationConditation;
 import spring.action.chapter3.condaition.judgment.MagicExitCondition;
 
 /**
@@ -11,7 +12,7 @@ import spring.action.chapter3.condaition.judgment.MagicExitCondition;
  * Created by Administrator on 2018/8/9.
  */
 @Component
-@Conditional(MagicExitCondition.class)
+@Conditional({MagicExitCondition.class, AnnotationConditation.class})
 public class MagicServiceBean {
     public void magicService(String message) {
         System.out.println(message);

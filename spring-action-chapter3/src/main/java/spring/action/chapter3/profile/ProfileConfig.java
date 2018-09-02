@@ -13,4 +13,5 @@ import spring.action.chapter3.profile.service.ProfileService;
 @Profile("test")
 @ComponentScan(basePackageClasses = {ProfileService.class})
 public class ProfileConfig {
+
 }

@@ -11,6 +11,7 @@
     <modules>
         <module>spring-action-chapter3</module>
         <module>spring-action-web</module>
+        <module>spring-action-chapter4</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.3.RELEASE</org.springframework.version>
