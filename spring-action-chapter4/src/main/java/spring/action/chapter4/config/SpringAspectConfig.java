@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import spring.action.chapter4.aspect.CarAspect;
+import spring.action.chapter4.aspect.EnhanceAspect;
 
 /**
  * Created by Administrator on 2018/9/2.
@@ -14,9 +15,14 @@ import spring.action.chapter4.aspect.CarAspect;
 @EnableAspectJAutoProxy  //启动切面的自动代理
 public class SpringAspectConfig {
 
+
     @Bean
-    public CarAspect carAspect()
-    {
+    public CarAspect carAspect() {
         return new CarAspect();
+    }
+
+    @Bean
+    public EnhanceAspect enhanceAspect() {
+        return new EnhanceAspect();
     }
 }

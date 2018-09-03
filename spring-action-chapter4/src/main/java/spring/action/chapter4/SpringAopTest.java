@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import spring.action.chapter4.config.SpringAspectConfig;
-import spring.action.chapter4.serviceImpl.BusCar;
-import spring.action.chapter4.serviceImpl.TrainCar;
+import spring.action.chapter4.exception.SpringAopException;
+import spring.action.chapter4.facade.CallCarService;
+import spring.action.chapter4.facade.PayService;
 
 /**
  * Created by Administrator on 2018/9/2.
@@ -18,14 +19,30 @@ import spring.action.chapter4.serviceImpl.TrainCar;
 public class SpringAopTest {
     @Autowired
     @Qualifier(value = "busCar")
-    private BusCar busCar;
+    private CallCarService busCar;
     @Autowired
     @Qualifier(value = "trainCar")
-    private TrainCar trainCar;
+    private CallCarService trainCar;
 
     @Test
     public void fiveAdvice() {
-        busCar.orderCar();
-        trainCar.orderCar();
+        try {
+            busCar.orderCar();
+        } catch (SpringAopException e) {
+            System.out.println("抛出了springAOP异常！！！");
+        }
+        try {
+            trainCar.orderCar();
+        } catch (SpringAopException e) {
+            System.out.println("抛出了springAOP异常！！！");
+        }
+        trainCar.orderCar("李金鹏");
+    }
+
+    @Test
+    public void springAopAddMethodTest() {
+        busCar.orderCar("李兴旺");
+        PayService payService = (PayService) busCar;
+         payService.payService("100");
     }
 }

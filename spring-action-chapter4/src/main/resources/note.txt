@@ -1,6 +1,6 @@
 Spring in action
 第四章节  面向切面的Spring
-  AOP 是面向切面的编程思想，在Spring AOP中，切面的最小单位是方法 可以通过代理的方式 对指定的类的指定方法做一系列逻辑业务上的增强操作，更倾向于将某些记录业务从主业务中剥离出来，统一进行处理
+  一、AOP 是面向切面的编程思想，在Spring AOP中，切面的最小单位是方法 可以通过代理的方式 对指定的类的指定方法做一系列逻辑业务上的增强操作，更倾向于将某些记录业务从主业务中剥离出来，统一进行处理
   通知advice
   对拦截的某个方法所需要执行的一些额外的操作 可以把这些操作定义为通知
   在spring提供了以下五类通知
@@ -16,3 +16,37 @@ Spring in action
   通过匹配，确定要执行通知操作的方法 都可以称之为切点
   切面
   切点和通知合起来就叫做一个切面
+
+  如果使用javaConfig的时候，我们可以
+  1、使用@Aspect注解该类为切面
+  2、使用@Before  @After  @AfterReturning   @Around  @AfterThrowing 注解方法表明5种通知的时机
+  3、使用@Pointcut 指定一个切点表达式，execution(* *.*.*(..)) 来匹配切入点
+  4、一定要在javaConfig配置类上使用@EnableAspectJAutoProxy开启切面的自动代理
+  如果使用xml的配置方式 (也是常用的配置方式)
+  1、引入spring-aop的限定配置
+  2、在<aop></aop>标签内 配置5种通知  如<aop:before pointcut="execution(* *.*.*(..))" method="before"/>
+  3、开启自动代理<aop:aspectj-autoproxy/>
+
+  二、引入新方法
+     SpringAop不仅可以对接口A现有的方法进行拦截增强，还可以为接口A新增一些额外的方法，其原理是代理模式，
+     我们可以在切面里面声明一个额外的接口B,然后委托给当前被代理的接口A的代理对象，这样代理对象既可以调用
+     接口A的方法，也可以调用接口B 的方法
+     具体操作:
+     javaConfig中
+     1、在切面中引入一个接口对象  PayService payService;
+     2、在接口对象上使用注解
+         //+表示CallCarService接口所有的子类，新增接口方法默认的实现类是DefaultPayServiceImpl
+         @DeclareParents(value = "spring.action.chapter4.facade.CallCarService+",defaultImpl = DefaultPayServiceImpl          .class)
+          public PayService payService;
+      3、在使用接口的时候，进行强制转换即可使用PayService的payService方法
+
+     由于通过javaConfig的配置必须在源码中进行，在无源码情况下，却无法使用，但我们可以使用XML
+     配置如下:
+    <aop:config>
+        <aop:aspect>
+            <aop:declare-parents types-matching="spring.action.chapter4.facade.CallCarService+"
+                                 implement-interface="spring.action.chapter4.facade.PayService"
+                                 default-impl="spring.action.chapter4.serviceImpl.DefaultPayServiceImpl"/>
+        </aop:aspect>
+    </aop:config>
+    使用xml配置可以更容易的引用第三方的服务。

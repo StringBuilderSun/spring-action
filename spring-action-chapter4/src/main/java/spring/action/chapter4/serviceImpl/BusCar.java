@@ -13,7 +13,7 @@ public class BusCar implements CallCarService {
         System.out.println("无名氏订购汽车票啦！！！");
     }
 
-    public void orderCar1(String userName) {
+    public void orderCar(String userName) {
         System.out.println(userName + "-订购汽车票啦！！！");
     }
 }
