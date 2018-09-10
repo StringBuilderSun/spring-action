@@ -12,6 +12,7 @@
         <module>spring-action-chapter3</module>
         <module>spring-action-web</module>
         <module>spring-action-chapter4</module>
+        <module>spring-action-chapter5</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.3.RELEASE</org.springframework.version>
@@ -32,6 +33,10 @@
         <com.yms.ltd>1.0.0</com.yms.ltd>
         <bestpay.kafka.version>0.2.8</bestpay.kafka.version>
         <junit.version>4.10</junit.version>
+        <javax.servlet>1.2</javax.servlet>
+        <taglibs.standard>1.1.2</taglibs.standard>
+        <javax.servlet-api>3.1.0</javax.servlet-api>
+        <apache.lang>3.4</apache.lang>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -96,6 +101,27 @@
                 <artifactId>spring-test</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
+            <!--jstl-->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${javax.servlet}</version>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>${taglibs.standard}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.lang}</version>
+            </dependency>
             <!-- 数据库连接池配置 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -159,10 +185,10 @@
                 <version>${logback.version}</version>
             </dependency>
             <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
             <!-- log end -->
             <!-- alibaba dubbo -->
             <dependency>

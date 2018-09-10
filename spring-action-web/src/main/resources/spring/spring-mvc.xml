@@ -9,11 +9,4 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <aop:config>
-        <aop:aspect>
-            <aop:declare-parents types-matching="spring.action.chapter4.facade.CallCarService+"
-                                 implement-interface="spring.action.chapter4.facade.PayService"
-                                 default-impl="spring.action.chapter4.serviceImpl.DefaultPayServiceImpl"/>
-        </aop:aspect>
-    </aop:config>
 </beans>
