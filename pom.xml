@@ -37,6 +37,7 @@
         <taglibs.standard>1.1.2</taglibs.standard>
         <javax.servlet-api>3.1.0</javax.servlet-api>
         <apache.lang>3.4</apache.lang>
+        <org.mockito>1.9.5</org.mockito>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -121,6 +122,13 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.lang}</version>
+            </dependency>
+            <!--mock-->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${org.mockito}</version>
+                <!--<scope>test</scope>-->
             </dependency>
             <!-- 数据库连接池配置 -->
             <dependency>
@@ -233,6 +241,7 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -280,6 +289,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

@@ -1,0 +1,29 @@
+Spring in action
+第五章节 SpringMvc 起步
+SpringMVC处理流程
+1、在web.xml中配置DispatcherServlet拦截的路径匹配模式，比如 /
+2、所有诸如 /hello  /pay  这样的请求都会被前端控制器 DispatcherServlet 拦截
+3、DispatcherServlet首先去查询一个或者多个处理器映射器，来找到对应的Controller去处理这个请求
+   处理映射器可分为：直接在配置文件中配置的bean处理器，URL处理器映射器等。
+4、一旦找到处理器映射器，就会直接将由前端透传的数据交给Controller处理，并等待着程序员写的业务处理逻辑执行
+5、Controller处理完业务后，会返回一些数据给用户，我们可以通过model的属性将这些数据打包返回，并且指定一个视图名
+   发送回DispatcherServlet
+6、此时的视图名，仅仅是一个视图名字，并不指代具体页面，DispatcherServlet会调用视图解析器来匹配到一个具体的视图，  这个视图可能但不一定是一个视图，在这里即配置我们较为常见的视图解析器:InternalResourceViewResolver
+7、最后数据会被交付给最终的视图实现
+8、一个SpringMvc请求流程就此结束！
+
+Controller的一般使用
+1、通过注解标志一个类为Controller   @Controller
+2、@RequestMapping(value = "/spitters",method = RequestMethod.GET,produces="text/html;charset=UTF-8")
+   可以匹配路径  指定请求的方法类别，还可以指定编码问题
+3、@ResponseBody注解可以表示此次请求返回的仅仅是一个字符串，不是一个视图
+4、接收请求的输入(发起一笔请求可能需要携带一些参数到控制器，我们可以通过以下三种方式接收参数)
+
+   查询参数--直接通过请求/pay?key1=value1&key2=value2等方式传递
+           --通过(@RequestParam String key1,@RequestParam String key2)这种方式接收
+
+   表单参数--通过/pay这种方式直接访问 数据通过model传递
+           --如果我们传递的是一个POJO类的一些属性，我们可以直接通过POJO类接收 (POJO  pojo)
+
+   路径参数--通过请求/pay/{key1}这种方式传递
+           --(@PathVariable(value = key1) String key1)这种方式接收
