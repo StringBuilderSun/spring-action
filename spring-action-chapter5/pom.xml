@@ -28,6 +28,11 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
     </dependency>
+    <!--属性验证-->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+    </dependency>
 </dependencies>
 
 </project>

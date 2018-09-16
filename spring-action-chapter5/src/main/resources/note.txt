@@ -27,3 +27,17 @@ Controller的一般使用
 
    路径参数--通过请求/pay/{key1}这种方式传递
            --(@PathVariable(value = key1) String key1)这种方式接收
+
+校验表单
+
+我们可以对Pojo类使用一些非空或者字段长度校验，在方法中使用@Valid 标识要验证的类
+通过Errors 来获取错误
+在pojo类的属性中可以使用 @Size  @NotNull 这类的注解
+
+需要引入
+<dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>6.0.4.Final</version>
+    </dependency>
+这个jar

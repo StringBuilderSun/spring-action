@@ -20,8 +20,16 @@ public interface SpitterRepository {
 
     /**
      * 注册用户
+     *
      * @param spitter
      * @return
      */
     Spitter saveSpitter(Spitter spitter);
+
+    /**
+     * 查找用户
+     * @param id
+     * @return
+     */
+    Spitter findSpitter(String message);
 }

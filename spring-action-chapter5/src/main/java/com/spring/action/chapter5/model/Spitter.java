@@ -1,5 +1,6 @@
 package com.spring.action.chapter5.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,14 +17,24 @@ import java.util.Date;
 @Getter
 @ToString
 public class Spitter {
-    private final Long id;
-    private final String message;
-    private final Date time;
+    private Long id;
+    private String message;
+    private Date time;
     private Double lastitude;
     private Double longitude;
 
+    public Spitter() {
+
+    }
+
     public Spitter(String message, Date time) {
         this(message, time, null, null);
+    }
+
+    public Spitter(Long id, String message) {
+        this.id = id;
+        this.message = message;
+        this.time = null;
     }
 
     public Spitter(String message, Date time, Double lastitude, Double longitude) {

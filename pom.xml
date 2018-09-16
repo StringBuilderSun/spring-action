@@ -13,6 +13,7 @@
         <module>spring-action-web</module>
         <module>spring-action-chapter4</module>
         <module>spring-action-chapter5</module>
+        <module>spring-action-chapter6</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.3.RELEASE</org.springframework.version>
@@ -38,6 +39,7 @@
         <javax.servlet-api>3.1.0</javax.servlet-api>
         <apache.lang>3.4</apache.lang>
         <org.mockito>1.9.5</org.mockito>
+        <hibernate-validator>6.0.4.Final</hibernate-validator>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -102,6 +104,11 @@
                 <artifactId>spring-test</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>alivn.spring.action</groupId>
+                <artifactId>spring.action.chapter6</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--jstl-->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -129,6 +136,12 @@
                 <artifactId>mockito-all</artifactId>
                 <version>${org.mockito}</version>
                 <!--<scope>test</scope>-->
+            </dependency>
+            <!--hibernate 属性验证器-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator}</version>
             </dependency>
             <!-- 数据库连接池配置 -->
             <dependency>

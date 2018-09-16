@@ -6,13 +6,17 @@ import com.spring.action.chapter5.facade.SpitterRepository;
 import com.spring.action.chapter5.model.Spitter;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.InternalResourceView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 
+import static org.junit.matchers.JUnitMatchers.hasItem;
 import static org.junit.matchers.JUnitMatchers.hasItems;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -57,9 +61,27 @@ public class SpringMvcTest {
 
     //验证注册界面和显示用户界面
     @Test
-    public void registerAndShowUserPage() {
-
+    public void registerAndShowUserPage() throws Exception {
+        SpitterRepository repository = mock(SpitterRepository.class);
+        Spitter spitter = new Spitter(1L, "lijinpeng");
+        when(repository.findSpitter("lijinpeng")).thenReturn(new Spitter(1L, "lijinpeng"));
+        when(repository.saveSpitter(spitter)).thenReturn(spitter);
+        when(repository.findSpitters(Long.MAX_VALUE, 20)).thenReturn(createSpitters());
+        HomeSpitterController spitterController = new HomeSpitterController(repository);
+        MockMvc mockMvc = standaloneSetup(spitterController).setSingleView(
+                new InternalResourceView("/WEB-INFO/views/spitters.jsp")).build();
+        //开始断言  获取表单  通过获取属性来感知表单是否获取成功
+        mockMvc.perform(get("/spitters/register")).andExpect(
+                view().name("registerForm")).andExpect(
+                model().attribute("isSkip", hasItems(createSpitters().toArray()))
+        );
+        //提交表单   开始注册  重定向暂时有点问题
+        mockMvc.perform(post("/spitters/register")
+                .param("id", "1")
+                .param("message", "lijinpeng")
+        ).andExpect(redirectedUrl("/spitters/basic/lijinpeng"));
     }
+
 
     public List<Spitter> createSpitters() {
         List<Spitter> spitters = new ArrayList<Spitter>(20);

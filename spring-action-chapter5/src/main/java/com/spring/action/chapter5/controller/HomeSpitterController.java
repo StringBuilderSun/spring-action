@@ -2,11 +2,14 @@ package com.spring.action.chapter5.controller;
 
 import com.spring.action.chapter5.facade.SpitterRepository;
 import com.spring.action.chapter5.model.Spitter;
+import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sun.invoke.util.VerifyAccess;
+
+import java.util.Arrays;
 
 /**
  * Created by Administrator on 2018/9/12.
@@ -29,13 +32,21 @@ public class HomeSpitterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String showRegisterForm() {
+    public String showRegisterForm(Model model) {
+        model.addAttribute("isSkip", spitterRepository.findSpitters(Long.MAX_VALUE, 20));
         return "registerForm";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String processRegistion(Spitter spitter) {
-        spitterRepository.saveSpitter(spitter);
-        return "redirect:/spitters/" + spitter.getId();
+        Spitter newSpitter= spitterRepository.saveSpitter(spitter);
+        return "redirect:/spitters/basic/" + newSpitter.getMessage();
+    }
+
+    @RequestMapping(value = "/basic/{message}")
+    public String showSpitterPage(String message, Model model) {
+        Spitter spitter = spitterRepository.findSpitter(message);
+        model.addAttribute(spitter);
+        return "userPage";
     }
 }
