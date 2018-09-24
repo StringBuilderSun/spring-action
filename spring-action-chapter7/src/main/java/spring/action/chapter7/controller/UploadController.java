@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import spring.action.chapter7.exception.DataServiceException;
 
 import javax.servlet.http.Part;
 import java.io.File;
@@ -45,5 +46,8 @@ public class UploadController {
         System.out.println("fileName:" + fileName + " contextType:" + contetType + " size:" + size);
         return "success";
     }
-
+    @RequestMapping(value = "/exception", method = RequestMethod.GET)
+    public String dataService() throws DataServiceException {
+        throw new DataServiceException("SYS_TIMEOUT", "服务超时");
+    }
 }

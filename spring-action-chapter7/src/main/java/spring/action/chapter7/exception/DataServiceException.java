@@ -17,6 +17,6 @@ public class DataServiceException extends Exception {
     public DataServiceException(String errorCode, String errorDesc) {
         super();
         this.errorCode = errorCode;
-        this.errorMessage = errorCode;
+        this.errorMessage = errorDesc;
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring.action.chapter3" />
+        <module name="spring.action.chapter4" />
+        <module name="spring.action.chapter5" />
+        <module name="spring.action.chapter6" />
+        <module name="spring.action.chapter7" />
+        <module name="spring.action.web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring.action.chapter3" target="1.5" />
+      <module name="spring.action.chapter4" target="1.5" />
+      <module name="spring.action.chapter5" target="1.5" />
+      <module name="spring.action.chapter6" target="1.5" />
+      <module name="spring.action.chapter7" target="1.5" />
+      <module name="spring.action.chapters" target="1.5" />
+      <module name="spring.action.web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

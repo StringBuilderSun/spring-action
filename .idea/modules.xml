@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-action-chapter3/spring.action.chapter3.iml" filepath="$PROJECT_DIR$/spring-action-chapter3/spring.action.chapter3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action-chapter4/spring.action.chapter4.iml" filepath="$PROJECT_DIR$/spring-action-chapter4/spring.action.chapter4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action-chapter5/spring.action.chapter5.iml" filepath="$PROJECT_DIR$/spring-action-chapter5/spring.action.chapter5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action-chapter6/spring.action.chapter6.iml" filepath="$PROJECT_DIR$/spring-action-chapter6/spring.action.chapter6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action-chapter7/spring.action.chapter7.iml" filepath="$PROJECT_DIR$/spring-action-chapter7/spring.action.chapter7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring.action.chapters.iml" filepath="$PROJECT_DIR$/spring.action.chapters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action-web/spring.action.web.iml" filepath="$PROJECT_DIR$/spring-action-web/spring.action.web.iml" />
+    </modules>
+  </component>
+</project>

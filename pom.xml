@@ -14,7 +14,7 @@
         <module>spring-action-chapter4</module>
         <module>spring-action-chapter5</module>
         <module>spring-action-chapter6</module>
-        <module>springactionchapter6</module>
+        <module>spring-action-chapter6</module>
         <module>spring-action-chapter7</module>
     </modules>
     <properties>

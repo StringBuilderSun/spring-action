@@ -1,0 +1,44 @@
+Spring in action
+第六章节 渲染web视图
+1、视图解析的原理
+Spring 定义了一个ViewResolver 接口
+
+View resolveViewName(String viewName,Locale locale)
+
+接收一个视图名  返回 View 接口对象
+
+View 接口的任务是接收模型以及Servlet的request和response,并将输出内容渲染到response中
+
+所以如果我们需要自定义视图解析器 只需要定义实现了ViewResolver和View接口的对象就可以。
+
+但是一般情况我们不需要自定义， Spring 提供了足够多的视图解析器。
+
+比如我们常用的
+BeanNameViewResolver
+InternalResourceViewResolver 等
+
+2、使用Spring的jsp库
+
+spring 表单库
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+如:<sf:form></sf:form>
+   <sf:input path=""/>
+   <sf:button/>
+   等html的相关标签内容
+
+spring 通用的标签库
+
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
+如：<s:htmlEscape>为当前页面设置默认的HTML转义值
+    <s:escapeBody>将标签体的html 和 js 转义为普通内容
+    <s:url>创建相当于上下文的url
+    <s:eval>计算Spring EL某个表达式的值
+
+3、Tiles视图
+我们可以利用Srping提供的Tiles视图来配置界面布局 比如header  footer 等 通用区域
+使用Tiles 的时候 需要引入 相应的jar 包
+两个重要的配置点：
+1、TilesConfigurer   视图配置器 必须指定 definitions 属性  里面是定义的tile模型
+2、TilesViewResolver  视图解析器  解析tile视图  优先级最好调高点
+然后需要引入tiles-config_3_0.dtd 约束 配置tile模型

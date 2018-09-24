@@ -1,0 +1,47 @@
+Spring in action
+第三章节  高级装配
+1、Profile 指定环境装配
+  1.1 在需要自动装配的bean上使用@Profile注解 就可以在指定环境中只装配指定环境的bean
+  1.2 Profile可以注解在配置类上  可以注解在配置方法上 XML 中配置在 beans 里面
+  1.3 激活profile
+      profile激活状态需要依赖 spring.profiles.active>spring.profiles.default  如果两者都没有 则会创建没有设置在             profile的bean
+      多种方式这是这两个属性:（只列举常用）
+      ☆作为DispatcherServlet的初始参数
+      ☆作为web应用的上下文参数
+      ☆在集成测试类上使用@ActiveProfile注解指定
+      ☆作为环境变量 、作为jvm参数  不建议使用
+ 2、条件化的bean
+    根据特殊指定的条件去决定是否创建bean 通过@Conditional注解去指定条件，参数为实现了   Condition接口的类，主要判断逻辑在    macthes方法
+ 3、自定义注解
+    @inteface定义的类是注解类 使用注解可以简化配置 将一些特殊逻辑定义成注解可以提升开发效率
+    注解的实质就是通过反射 生成一个代理类:反射获取所有注解  然后针对引用的注解做业务或功能处理
+    下面是四个元注解基类
+     定义注解的生命周期
+    @Retention(RetentionPolicy.RUNTIME)
+    定义直接的使用范围  这里是类
+    @Target(ElementType.TYPE)
+    将注解添加到java文档中
+    @Documented
+    允许被子类继承
+    @Inherited
+ 4、处理自动装配的歧义性
+    1、@Primary设置首选的bean（基本不用）
+    2、@Qualifier("beanName") 限定符  通常与@Autowired联合使用 表示引用的是此beanName的bean
+    3、@Qualifier("beanName") 限定符  通常与@Componet联合使用 表示注入的是此beanName的bean
+ 5、bean的作用域
+    bean在spring中有四种作用域：
+    1、单例(Singleton) 整个应用程序中还只有一个实例，在多线程中是通过ThreadLocl实现的 为每个线程创建一个对象副本
+    2、原型(Prototype) 每次注入或者通过spring上下文获取的时候 都会创建一个新的bean
+    3、会话(Session) 在web应用中 为每个应用创建一个bean实例
+    4、请求(Request) 在web应用中  为每个请求创建一个bean
+ 6、运行时值注入
+    1、外部声明属性源，通过spring的Enviroment检索属性。在配置类上使用@PropertySource指定配置文件路径，注入Enviroment类       对象
+    Enviroment类对象会自动解析配置好的配置文件，可以通过如下几种方式获取属性的值
+    String getProperty(String key)
+    String getProperty(String key,String defautValue)
+      T    getProperty(String key,Class<T> type)
+      T    getProperty(String key,Class<T> type,T defautValue)
+
+    如果通过这种方式获取的属性必须要定义，不定义抛异常可以使用 getRequiredProperty
+    2、解析占位符 比较常用的
+       我们可以通过使用@Value("${url}")注解解析，使用这种这种凡是解析，必须要配置PropertySourcesPlaceholderConfigurer        这个类。再XML中可以通过<context:property-placeholder/>配置
