@@ -29,7 +29,7 @@ public class RegisterController {
     public String showRegister(Model model) {
         //显示一个表单的时候， 如果用Spring form 必须在表单初始化得时候绑定一个model
         model.addAttribute("command", new UserInfo());
-        return "registerForm";
+        return "chapter6/registerForm";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -37,16 +37,16 @@ public class RegisterController {
         System.out.println(userInfo);
         System.out.println("错误"+errors);
         if (errors.hasErrors()) {
-            return "registerForm";
+            return "chapter6/registerForm";
         }
         System.out.println("注册成功,重定向跳转！！！");
-        return "redirect:userInfo/" + userInfo.getUserName();
+        return "redirect:chapter6/userInfo/" + userInfo.getUserName();
     }
 
     @RequestMapping(value = "/userInfo/{userName}", method = RequestMethod.GET)
     public String userInfoPage(@PathVariable String userName, Model model) {
 
         model.addAttribute("userName", userName);
-        return "userInfo";
+        return "chapter6/userInfo";
     }
 }

@@ -34,3 +34,11 @@ spring 通用的标签库
     <s:escapeBody>将标签体的html 和 js 转义为普通内容
     <s:url>创建相当于上下文的url
     <s:eval>计算Spring EL某个表达式的值
+
+3、Tiles视图
+我们可以利用Srping提供的Tiles视图来配置界面布局 比如header  footer 等 通用区域
+使用Tiles 的时候 需要引入 相应的jar 包
+两个重要的配置点：
+1、TilesConfigurer   视图配置器 必须指定 definitions 属性  里面是定义的tile模型
+2、TilesViewResolver  视图解析器  解析tile视图  优先级最好调高点
+然后需要引入tiles-config_3_0.dtd 约束 配置tile模型

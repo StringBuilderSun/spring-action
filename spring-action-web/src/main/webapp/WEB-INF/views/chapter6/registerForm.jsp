@@ -21,8 +21,6 @@
         <sf:errors path="passWord"/><br>
         <input type="submit" value="提交">
     </sf:form>
-    <sf:input path=""/>
-    <sf:button/>
 </div>
 </body>
 </html>

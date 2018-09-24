@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+
   <display-name>spring-action</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -30,6 +31,14 @@
       <!--<param-value>prod</param-value>-->
     <!--</init-param>-->
     <load-on-startup>1</load-on-startup>
+    <multipart-config>
+      <!--临时文件的目录-->
+      <location>d:/temp</location>
+      <!-- 上传文件最大2M -->
+      <max-file-size>2097152</max-file-size>
+      <!-- 上传文件整个请求不超过4M -->
+      <max-request-size>4194304</max-request-size>
+    </multipart-config>
   </servlet>
   <servlet-mapping>
     <servlet-name>springServlet</servlet-name>

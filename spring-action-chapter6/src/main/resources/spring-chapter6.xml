@@ -4,10 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="sping.action.chapter6.controller"/>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/chapter6/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
     <!--<s:message> 使用配置-->
     <!--配置message资源加载器  在内部路径下加载 查找 messages.properties 配置文件-->
     <!--需要注意到点：-->
@@ -28,4 +25,17 @@
     <!--<property name="basename" value="D:\messages"/>-->
     <!--<property name="cacheSeconds" value="10"/>-->
     <!--</bean>-->
+    <!--Apache Tiles视图定义-->
+    <!--配置视图解析-->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/layout/tiles/tiles.xml</value>
+                <value>/WEB-INF/views/**/tiles.xml</value>
+            </list>
+        </property>
+        <!--开启高级特性-->
+        <!--<property name="completeAutoload" value="true"/>-->
+    </bean>
+
 </beans>

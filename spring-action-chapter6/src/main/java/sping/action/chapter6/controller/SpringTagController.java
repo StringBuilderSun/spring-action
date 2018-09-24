@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SpringTagController {
     @RequestMapping(method = RequestMethod.GET)
     public String showSpringTag() {
-        return "springTag";
+        return "chapter6/springTag";
     }
 }

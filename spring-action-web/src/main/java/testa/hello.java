@@ -5,5 +5,4 @@ package testa;
  */
 public class hello {
     private String color;
-
 }

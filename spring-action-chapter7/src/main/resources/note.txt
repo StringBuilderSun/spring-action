@@ -1,0 +1,44 @@
+Spring in action
+第七章节 SpringMvc高级技术
+1、处理multipart形式数据
+DispatchServlet并没有解析multipart请求数据的功能，它将该任务委托给了Spring中MultipartResolver策略
+接口实现，通过该接口的实现类解析multipart请求中的内容
+Spring内置了两个MultipartResolver的实现可供选择
+CommonsMultipartResolver：使用Jakarta Commons FileUpload来解析multipart请求；
+StandardServletMultipartResolver(一般使用)：依靠Servlet 3.0支持来解析（Spring 3.1及以上）；
+
+配置CommonsMultipartResolver
+直接在xml 文件中配置bean即可
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="defaultEncoding" value="UTF-8"/>-->
+        <!--<property name="maxUploadSize" value="204800"/>-->
+        <!--<property name="uploadTempDir" value="file:d:/temp"/>-->
+    </bean>-->
+自定义属性直接在bean里面进行处理即可
+配置StandardServletMultipartResolver
+在web.xml中配置 需要servlet3.0以上版本才行 在DispatcherServlet 中配置
+ <multipart-config>
+      <!--临时文件的目录-->
+      <location>d:/temp</location>
+      <!-- 上传文件最大2M -->
+      <max-file-size>2097152</max-file-size>
+      <!-- 上传文件整个请求不超过4M -->
+      <max-request-size>4194304</max-request-size>
+    </multipart-config>
+2、Controller对Multipart文件的接收
+   ① MultipartFile
+   ②Part
+   两者的方法很相似
+3、异常处理
+在springMVC发起请求的时候 如果遇到一些异常 会根据异常类型自动转换成相应的http状态码
+比如当找不到处理映射的控制器时候 就会抛出404 错误，如果我们想自定义错误码返回相应的状态
+可以使用一下两个注解
+使用@ResponseStatus注解将一个异常映射为HTTP状态码；（使用在异常类上）
+使用ExceptionHandler注解的方法可以用来处理异常(使用在捕获的异常的处理方法上)、
+  ①在一个Controller中生效
+   我们可以通过使用ExceptionHandler注解 生命一个异常返回的方法 就可以使整个控制器类中所有的请求
+   在抛出指定异常后返回指定的错误
+  ②在所有Controller中生效
+   上面的方式只能在一个Controller生效。如果相对所有Controller生效。一种最简单的方式是生命一个
+   基类包含这个异常方法，所有Controller继承即可，但是过于麻烦，所以Spring提供了增强类，通过切面的方式
+   注入这个方法，使用@ControllerAdvice声明一个异常处理类，然后里面可以写若干了错误返回方法。
