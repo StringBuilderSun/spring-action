@@ -16,6 +16,7 @@
         <module>spring-action-chapter6</module>
         <module>spring-action-chapter6</module>
         <module>spring-action-chapter7</module>
+        <module>spring-action-expend</module>
     </modules>
     <properties>
         <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
