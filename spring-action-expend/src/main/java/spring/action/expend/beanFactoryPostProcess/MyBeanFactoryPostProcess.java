@@ -1,4 +1,4 @@
-package spring.action.expend;
+package spring.action.expend.beanFactoryPostProcess;
 
 import lombok.Setter;
 import org.springframework.beans.BeansException;
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionVisitor;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.core.PriorityOrdered;
 import org.springframework.util.StringValueResolver;
 import sun.misc.BASE64Encoder;
 
@@ -19,7 +20,7 @@ import java.util.Set;
  * User: lijinpeng
  * Created by Shanghai on 2019/5/19.
  */
-public class MyBeanFactoryPostProcess implements BeanFactoryPostProcessor {
+public class MyBeanFactoryPostProcess implements BeanFactoryPostProcessor,PriorityOrdered {
 
     private Set<String> sensitiveWords=new HashSet<String>();
 
@@ -37,6 +38,7 @@ public class MyBeanFactoryPostProcess implements BeanFactoryPostProcessor {
     }
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+        System.out.println("MyBeanFactoryPostProcess 执行了,优先级别:"+getOrder());
         String[] beanNames = configurableListableBeanFactory.getBeanDefinitionNames();
         for (String beanName : beanNames) {
             BeanDefinition bd = configurableListableBeanFactory.getBeanDefinition(beanName);
@@ -54,5 +56,9 @@ public class MyBeanFactoryPostProcess implements BeanFactoryPostProcessor {
             visitor.visitBeanDefinition(bd);
         }
 
+    }
+
+    public int getOrder() {
+        return 0;
     }
 }

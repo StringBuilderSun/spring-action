@@ -1,3 +1,28 @@
 Spring Source
 扩展功能
-1、使用自定义的BeanFactoryPostProcess
+1、自定义的BeanPostProcessor
+BeanPostProcessor可以拦截bean的创建过程
+方法：postProcessBeforeInitialization
+这个方法可以在bean创建完成后，属性填充完成和Aware执行之后， init-method方法执行之前执行
+方法:postProcessAfterInitialization
+这个方法作用于init-method执行之后执行
+
+2、自定义的BeanFactoryPostProcess
+（1）MyBeanFactoryPostProcess implements BeanFactoryPostProcessor
+重写postProcessBeanFactory方法
+这个方法是在Spring读取完配置文件也就是将bean声明转换成BeanDefinition之后，所以我们可以在这个方法里对BeanDefinition执行特殊化改造
+比如:
+如果我们想对敏感信息加密处理，可以在这个方法里面对BeanDefinition的属性值进行加密处理
+具体查看类MyBeanFactoryPostProcess
+
+（2）如果想配置多个BeanFactoryPostProcess,而且想指定执行顺序 需要实现PriorityOrdered接口
+    public int getOrder() {
+        return 5;
+    }
+    返回值 越小  越先执行  具体查看  AutowireBeanFactoryPostProcess 配置
+
+3、Bean实例化的执行顺序
+
+实例化+属性初始化--->Aware-->BeanPostProcess.postProcessBeforeInitialization-->PostConstruct
+                 -->InitializingBean.afterPropertiesSet-->BeanPostProcess.postProcessAfterInitialization
+
