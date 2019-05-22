@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TracesRecordAdvisor {
 
-
     @Pointcut("execution(* spring.action.expend.aop.services.*.*(..))")
     public void expression() {
     }
@@ -28,10 +27,4 @@ public class TracesRecordAdvisor {
     {
         System.out.println("退出服务,记录日志退出.....");
     }
-
-
-
-
-
-
 }

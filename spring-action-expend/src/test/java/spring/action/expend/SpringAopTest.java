@@ -16,6 +16,5 @@ public class SpringAopTest {
         ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext("spring-aop.xml");
         PayService payService= (PayService) applicationContext.getBean("payServiceImpl");
         payService.payMoneyService();
-
     }
 }
