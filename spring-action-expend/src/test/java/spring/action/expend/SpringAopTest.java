@@ -8,7 +8,6 @@ import spring.action.expend.aop.services.PayService;
 /**
  * Created by lijinpeng on 2019/5/21.
  */
-
 public class SpringAopTest {
 
     @Test
