@@ -33,7 +33,7 @@
         <logback.version>1.1.1</logback.version>
         <zkclient.version>0.1</zkclient.version>
         <zookeeper.version>3.4.7</zookeeper.version>
-        <dubbo.version>2.5.3</dubbo.version>
+        <dubbo.version>2.6.12</dubbo.version>
         <com.yms.ltd>1.0.0</com.yms.ltd>
         <bestpay.kafka.version>0.2.8</bestpay.kafka.version>
         <junit.version>4.10</junit.version>
